@@ -45,7 +45,7 @@
 	</select>
 	<select id="selectBookByPage" resultMap="bookMap" resultType="bookCopyVo" parameterType="java.util.HashMap">
 		<![CDATA[
-			select * from book_info a inner join book_copy b on a.book_isbn=b.book_isbn limit ${startIdx},${endIdx};
+			select * from book_info a inner join book_copy b on a.book_isbn=b.book_isbn limit ${startIdx},${cnt};
 		]]>
 	</select>
 	

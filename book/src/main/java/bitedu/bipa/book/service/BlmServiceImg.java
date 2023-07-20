@@ -105,7 +105,6 @@ public class BlmServiceImg {
 		info = new PageInfo(ITEMS_PER_PAGE, GROUPS_PER_PAGE);
 		info.setCount(this.countBooks());
 		int firstPostNum = info.calcuOrderOfPage(page);
-		int endPostNum = firstPostNum+info.getItemsPerPage();
 		ArrayList<BookCopy> list = dao.selectBookByPage(firstPostNum, info.getItemsPerPage());
 		
 		return list;

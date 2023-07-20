@@ -66,11 +66,11 @@ public class BlmDAOImg implements IBlmDAO{
 		return flag;
 	}
 
-	public ArrayList<BookCopy> selectBookByPage(int startIdx, int endIdx) {
+	public ArrayList<BookCopy> selectBookByPage(int startIdx, int cnt) {
 		
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
         map.put("startIdx", startIdx);
-        map.put("endIdx", endIdx);
+        map.put("cnt", cnt);
         
 		ArrayList<BookCopy> list = (ArrayList)sqlSession.selectList("mapper.book.selectBookByPage", map);
 		
