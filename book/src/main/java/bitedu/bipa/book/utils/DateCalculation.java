@@ -22,5 +22,4 @@ public class DateCalculation {
 		}
 		return date;
 	}
-	
 }
