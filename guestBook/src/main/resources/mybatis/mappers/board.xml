@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.board">
+	<resultMap type="boardVO" id="boardMap">
+		<id property="id" column="id"/>
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="writer" column="writer" />
+		<result property="views" column="views" />
+		<result property="writeTime" column="write_time" />
+	</resultMap>
+	
+	<select id="viewAll" resultMap="boardMap" resultType="boardVO">
+		<![CDATA[
+			SELECT * FROM guest_book
+		]]>
+	</select>
+	
+	<select id="selectPost" resultMap="boardMap" resultType="boardVO" parameterType="java.lang.Integer">
+		<![CDATA[
+			SELECT * FROM guest_book where id=#{id}
+		]]>
+	</select>
+</mapper>
