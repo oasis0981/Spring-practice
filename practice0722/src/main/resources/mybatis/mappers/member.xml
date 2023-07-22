@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
+  "http://mybastis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.member">
+	<resultMap id="memberMap" type="memberVO">
+		<id property="seq" column="user_seq" />
+		<result property="id" column="user_id"/>
+		<result property="password" column="user_pass"/>
+		<result property="phoneNumber" column="user_phone_number"/>
+		<result property="status" column="user_status"/>
+		<result property="grade" column="user_grade"/>
+		<result property="grade" column="max_book"/>
+		<result property="stopDate" column="service_stop"/>
+		<result property="isAdmin" column="admin"/>
+	</resultMap>
+	<select id="selectAllUser" resultMap="memberMap" resultType="memberVO">
+		<![CDATA[
+			select * from book_user order by user_seq asc
+		]]>
+	</select>
+	
+	<select id="selectUserBySeq" resultMap="memberMap" resultType="memberVO" parameterType="java.lang.Integer">
+		<![CDATA[
+			select * from book_user where user_seq = #{seq}
+		]]>
+	</select>
+	
+	<select id="deleteUserBySeq" parameterType="java.lang.Integer">
+		<![CDATA[
+			delete from book_user where user_seq = #{seq}
+		]]>
+	</select>
+</mapper>
