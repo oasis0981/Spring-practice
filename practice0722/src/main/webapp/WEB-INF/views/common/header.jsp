@@ -35,7 +35,7 @@
           </c:when>
           <c:otherwise>
 	        <a href="${contextPath}/member/viewLogin.do"><h3>로그인</h3></a>
-	        <a href="${contextPath}/member/viewRegist.do"><h3>회원가입</h3></a>
+	        <a href="${contextPath}/member/view_regist.do"><h3>회원가입</h3></a>
 	      </c:otherwise>
 	   </c:choose>     
      </td>

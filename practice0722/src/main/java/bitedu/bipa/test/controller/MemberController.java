@@ -1,13 +1,13 @@
 package bitedu.bipa.test.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.net.http.HttpRequest;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,7 +43,33 @@ public class MemberController {
 		return mav;
 	}
 
-	// 회원가입(only user)
+	// 회원가입(only user) - 아이디 중복확인 필요(ajax)
+	@RequestMapping(value="/view_regist.do", method=RequestMethod.GET)
+	public ModelAndView viewRegister() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/view_register");
+		return mav;
+	}
+	
+	@RequestMapping(value="regist.do", method=RequestMethod.POST)
+	public ModelAndView register(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		MemberVO member = new MemberVO();
+		member.setId(req.getParameter(""));
+		member.setPhoneNumber(req.getParameter("phone_number"));
+		member.setPassword(req.getParameter("pwd"));
+		//member.setIsAdmin(req.getParameter("isAdmin");
+		mav.setViewName("redirect:list.do"); // TODO: 처리 필요(회원 상세로?)
+		return mav;
+	}
+	
+//	@RequestMapping(value="/{checkId}", method=RequestMethod.GET)
+//	public boolean checkId(@PathVariable("checkId") String id) {
+//		boolean flag = ms.checkUser(id);
+//		
+//		return flag;
+//	}
+	
 
 	// 회원정보수정(only user)
 	@RequestMapping(value = "/view_update.do", method = RequestMethod.POST)

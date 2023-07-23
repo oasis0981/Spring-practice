@@ -35,4 +35,15 @@
 			update book_user set user_id=#{id}, user_phone_number=#{phoneNumber}, user_pass=#{password} where user_seq=#{seq}
 		]]>
 	</select>
+	<select id="insertUser" parameterType="memberVO">
+		<![CDATA[
+			insert into book_user (user_id, user_pass, user_phone_number, admin) value (#{id}, #{password}, #{phoneNumber}, #{isAdmin})
+		]]>
+	</select>
+	<select id="checkId" parameterType="java.lang.String">
+		<![CDATA[
+			select count(*) from book_user where user_id=#{id};
+		]]>
+	</select>
+	
 </mapper>

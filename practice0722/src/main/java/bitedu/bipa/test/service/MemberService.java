@@ -33,4 +33,14 @@ public class MemberService {
 		boolean flag = dao.updateUser(member);
 		return flag;
 	}
+	
+	public boolean insertUser(MemberVO member) {
+		boolean flag = dao.insertUser(member);
+		return flag;
+	}
+	
+	public boolean checkUser(String id) {
+		boolean flag = dao.selectUserById(id);
+		return flag;
+	}
 }
