@@ -41,7 +41,7 @@
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td>${userInfo.password}</td>
+				<td>${userInfo.phoneNumber}</td>
 			</tr>
 			<tr>
 				<td>대출가능권수</td>
@@ -58,7 +58,6 @@
 	</form>
 	<script type="text/javascript">
 		$("#go_view_update").click(function(e) {
-			alert("go");
 			$("form").attr("action", "view_update.do?seq="+$("#user_seq").val())
 			$("form").submit();
 		})

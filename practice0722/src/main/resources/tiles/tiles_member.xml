@@ -22,19 +22,19 @@
 	</definition>
 
 	<definition name="/member/detail" extends="baseLayout">
-		<put-attribute name="title" value="Member List" />
+		<put-attribute name="title" value="Member Detail" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/member/memberDetail.jsp" />
 	</definition>
 
 	<definition name="/member/delete" extends="baseLayout">
-		<put-attribute name="title" value="Member List" />
+		<put-attribute name="title" value="Member Delete" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/member/memberList.jsp" />
 	</definition>
 
 	<definition name="/member/view_update" extends="baseLayout">
-		<put-attribute name="title" value="Member List" />
+		<put-attribute name="title" value="Member Update" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/member/memberUpdate.jsp" />
 	</definition>

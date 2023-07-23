@@ -31,34 +31,38 @@
 			</tr>
 			<tr>
 				<td>회원번호</td>
-				<td><input type="text" value="${userInfo.seq}" disabled id="user_seq" name="user_seq"/></td>
+				<td><input type="text" value="${userInfo.seq}"  id="user_seq" name="user_seq" readonly/></td>
 			</tr>
 			<tr>
 				<td>ID</td>
-				<td>${userInfo.id}</td>
+				<td><input type="text" value="${userInfo.id}" name="id"/></td>
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td>${userInfo.password}</td>
+				<td><input type="text" value="${userInfo.phoneNumber}" name="phone_number"/></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="text" value="${userInfo.password}" name="pwd"/></td>
 			</tr>
 			<tr>
 				<td>대출가능권수</td>
-				<td>${userInfo.maxBook}</td>
+				<td><input type="text" value="${userInfo.maxBook}" disabled name="avalibe_book"/></td>
 			</tr>
 			<tr>
 				<td>대출정지기간</td>
-				<td>${DateCalculation.getDate(userInfo.stopDate)}</td>
+				<td><input type="text" value="${DateCalculation.getDate(userInfo.stopDate)}" disabled name="stop_date"/></td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<button id="update_user_info">회원정보 수정</button>
+					<input type="submit" id="update_user_info" value="회원정보 수정"/>
 				</td>
 			</tr>
 		</table>
 	</form>
 	<script type="text/javascript">
 		$("#update_user_info").click(function(){
-			$("form").attr("action", "/update.do?seq="+$("#user_seq").val());
+			$("form").attr("action", "./update.do");
 			$("form").submit();
 		})
 	</script>

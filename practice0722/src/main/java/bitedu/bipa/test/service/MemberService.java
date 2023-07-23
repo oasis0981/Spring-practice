@@ -28,4 +28,9 @@ public class MemberService {
 		boolean flag = dao.deleteUser(Integer.parseInt(seq));
 		return flag;
 	}
+	
+	public boolean updateUser(MemberVO member) {
+		boolean flag = dao.updateUser(member);
+		return flag;
+	}
 }

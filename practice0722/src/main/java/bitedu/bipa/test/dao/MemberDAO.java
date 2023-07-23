@@ -33,5 +33,14 @@ public class MemberDAO {
 		return flag;
 	}
 	
+	public boolean updateUser(MemberVO member) {
+		boolean flag = false;
+		int affected = sqlSession.update("mapper.member.updateUser", member);
+		if (affected> 0) {
+			flag = true;
+		}
+		return flag;
+	}
+	
 	
 }

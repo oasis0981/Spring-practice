@@ -30,4 +30,9 @@
 			delete from book_user where user_seq = #{seq}
 		]]>
 	</select>
+	<select id="updateUser" parameterType="memberVO">
+		<![CDATA[
+			update book_user set user_id=#{id}, user_phone_number=#{phoneNumber}, user_pass=#{password} where user_seq=#{seq}
+		]]>
+	</select>
 </mapper>
