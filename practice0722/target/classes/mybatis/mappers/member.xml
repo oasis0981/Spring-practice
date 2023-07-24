@@ -45,5 +45,10 @@
 			select count(*) from book_user where user_id=#{id};
 		]]>
 	</select>
+	<select id="login" parameterType="java.util.HashMap" resultMap="memberMap" resultType="memberVO">
+		<![CDATA[
+			select * from book_user where user_id=#{id} and user_pass=#{password};
+		]]>
+	</select>
 	
 </mapper>

@@ -43,4 +43,9 @@ public class MemberService {
 		boolean flag = dao.selectUserById(id);
 		return flag;
 	}
+	
+	public MemberVO checkLogin(String id, String pwd) {
+		MemberVO member = dao.selectLoginUser(id, pwd);
+		return member;
+	}
 }

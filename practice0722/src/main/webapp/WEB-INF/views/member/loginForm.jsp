@@ -9,7 +9,7 @@
 <body>
 <form action="login.do" method="post">
 	<input type="text" name="id">
-	<input type="password" name="pass">
+	<input type="password" name="pwd">
 	<input type="submit" name="" value="Login">
 </form>
 </body>

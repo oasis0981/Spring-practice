@@ -44,4 +44,11 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/member/signUp.jsp" />
 	</definition>
+	
+	<definition name="/member/view_login" extends="baseLayout">
+		<put-attribute name="title" value="Member Register" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/loginForm.jsp" />
+	</definition>
+	
 </tiles-definitions>

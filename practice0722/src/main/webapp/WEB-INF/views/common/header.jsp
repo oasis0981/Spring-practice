@@ -1,3 +1,4 @@
+<%@page import="bitedu.bipa.test.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     isELIgnored="false" %>
@@ -27,14 +28,14 @@
      </td>
      
      <td>
-       <!-- <a href="#"><h3>로그인</h3></a> -->
+       <% MemberVO user = (MemberVO) session.getAttribute("user");%>
        <c:choose>
           <c:when test="${user != null}">
-            <h3>환영합니다. ${user.userId }님!</h3>
+            <h3>환영합니다. ${user.getId()}님!</h3>
             <a href="${contextPath}/member/logout.do"><h3>로그아웃</h3></a>
           </c:when>
           <c:otherwise>
-	        <a href="${contextPath}/member/viewLogin.do"><h3>로그인</h3></a>
+	        <a href="${contextPath}/member/view_login.do"><h3>로그인</h3></a>
 	        <a href="${contextPath}/member/view_regist.do"><h3>회원가입</h3></a>
 	      </c:otherwise>
 	   </c:choose>     

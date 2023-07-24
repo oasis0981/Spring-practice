@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
 import bitedu.bipa.test.service.MemberService;
 import bitedu.bipa.test.vo.MemberVO;
@@ -44,14 +47,14 @@ public class MemberController {
 	}
 
 	// 회원가입(only user)
-	@RequestMapping(value="/view_regist.do", method=RequestMethod.GET)
+	@RequestMapping(value = "/view_regist.do", method = RequestMethod.GET)
 	public ModelAndView viewRegister() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/member/view_register");
 		return mav;
 	}
-	
-	@RequestMapping(value="regist.do", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/regist.do", method = RequestMethod.POST)
 	public ModelAndView register(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		MemberVO member = new MemberVO();
@@ -59,16 +62,16 @@ public class MemberController {
 		member.setPhoneNumber(req.getParameter("phone_number"));
 		member.setPassword(req.getParameter("pwd"));
 		member.setIsAdmin(Integer.parseInt(req.getParameter("is_admin")));
-		
+
 		if (member.getIsAdmin() == 1) {
 			System.out.println("관리자 가입");
 		} else {
 			System.out.println("일반회원 가입");
 		}
-		
+
 		boolean flag = ms.insertUser(member);
 		mav.addObject("isRegistered", flag);
-		mav.setViewName("redirect:../"); // TODO: 처리 필요(메인으로? 방명록으로?)
+		mav.setViewName("redirect:../"); // 메인으로
 		return mav;
 	}
 
@@ -104,7 +107,7 @@ public class MemberController {
 	}
 
 	// 회원 삭제(only admin)
-	@RequestMapping("/delete.do")
+	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
 	public ModelAndView deleteUser(@RequestParam("seq") String seq) {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = ms.deleteUser(seq);
@@ -113,8 +116,37 @@ public class MemberController {
 	}
 
 	// 로그인
+	@RequestMapping(value="/view_login.do", method=RequestMethod.GET)
+	public ModelAndView viewLogin() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/view_login");
+		return mav;	
+	}
+	
+	@RequestMapping(value="/login.do", method=RequestMethod.POST)
+	public ModelAndView login(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String url = "view_login.do";
+		MemberVO member = ms.checkLogin(id, pwd);		
+		if (member != null) {
+			session.setAttribute("user", member);
+			url = "../";
+			System.out.println("로그인 성공");
+		} else {
+			System.out.println("로그인 실패");
+		}
+		mav.setViewName("redirect:"+url);
+		return mav;
+	}
 
 	// 로그아웃
+	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
+	public ModelAndView logout(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		session.invalidate();
+		mav.setViewName("redirect:list.do");
+		return mav;
+	}
 
 	// 인증 확인
 }

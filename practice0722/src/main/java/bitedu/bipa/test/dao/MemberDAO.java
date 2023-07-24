@@ -1,6 +1,7 @@
 package bitedu.bipa.test.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,16 @@ public class MemberDAO {
 			flag = true;
 		}
 		return flag;
+		
+	}
+	
+	public MemberVO selectLoginUser(String id, String pwd) {
+		HashMap<String, String> loginSet = new HashMap<String, String>();
+		loginSet.put("id", id);
+		loginSet.put("password", pwd);
+		MemberVO member = sqlSession.selectOne("mapper.member.login", loginSet);
+		System.out.println(loginSet);
+		return member;
 		
 	}
 
