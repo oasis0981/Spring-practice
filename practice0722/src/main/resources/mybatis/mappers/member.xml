@@ -40,7 +40,7 @@
 			insert into book_user (user_id, user_pass, user_phone_number, admin) value (#{id}, #{password}, #{phoneNumber}, #{isAdmin})
 		]]>
 	</select>
-	<select id="checkId" parameterType="java.lang.String">
+	<select id="checkId" parameterType="java.lang.String" resultType="java.lang.Integer">
 		<![CDATA[
 			select count(*) from book_user where user_id=#{id};
 		]]>

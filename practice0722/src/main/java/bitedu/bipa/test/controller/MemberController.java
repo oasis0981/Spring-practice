@@ -43,7 +43,7 @@ public class MemberController {
 		return mav;
 	}
 
-	// 회원가입(only user) - 아이디 중복확인 필요(ajax)
+	// 회원가입(only user)
 	@RequestMapping(value="/view_regist.do", method=RequestMethod.GET)
 	public ModelAndView viewRegister() {
 		ModelAndView mav = new ModelAndView();
@@ -55,21 +55,22 @@ public class MemberController {
 	public ModelAndView register(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		MemberVO member = new MemberVO();
-		member.setId(req.getParameter(""));
+		member.setId(req.getParameter("id"));
 		member.setPhoneNumber(req.getParameter("phone_number"));
 		member.setPassword(req.getParameter("pwd"));
-		//member.setIsAdmin(req.getParameter("isAdmin");
-		mav.setViewName("redirect:list.do"); // TODO: 처리 필요(회원 상세로?)
+		member.setIsAdmin(Integer.parseInt(req.getParameter("is_admin")));
+		
+		if (member.getIsAdmin() == 1) {
+			System.out.println("관리자 가입");
+		} else {
+			System.out.println("일반회원 가입");
+		}
+		
+		boolean flag = ms.insertUser(member);
+		mav.addObject("isRegistered", flag);
+		mav.setViewName("redirect:../"); // TODO: 처리 필요(메인으로? 방명록으로?)
 		return mav;
 	}
-	
-//	@RequestMapping(value="/{checkId}", method=RequestMethod.GET)
-//	public boolean checkId(@PathVariable("checkId") String id) {
-//		boolean flag = ms.checkUser(id);
-//		
-//		return flag;
-//	}
-	
 
 	// 회원정보수정(only user)
 	@RequestMapping(value = "/view_update.do", method = RequestMethod.POST)
@@ -110,8 +111,6 @@ public class MemberController {
 		mav.setViewName("redirect:list.do");
 		return mav;
 	}
-
-	// 아이디 중복 확인
 
 	// 로그인
 

@@ -52,8 +52,11 @@ public class MemberDAO {
 	}
 	
 	public boolean selectUserById(String id) {
-		boolean flag = sqlSession.selectOne("mapper.member.checkId", id);
-		System.out.println("DAO확인: "+ flag);
+		boolean flag = false;
+		int isUsed = sqlSession.selectOne("mapper.member.checkId", id);
+		if (isUsed > 0) {
+			flag = true;
+		}
 		return flag;
 		
 	}

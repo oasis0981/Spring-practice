@@ -15,6 +15,7 @@
   <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
+	${param.isRegistered=='true'?"<script>alert('회원가입 성공');</script>":""}
    <h1>메인 페이지입니다!!</h1>
 </body>
 </html>
