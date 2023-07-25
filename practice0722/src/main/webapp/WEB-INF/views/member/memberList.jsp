@@ -6,23 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Member List</title>
-<style>
-#member_list {
-	width: 80%;
-	border: 1px solid black;
-	text-align: center;
-	border-collapse: collapse;
-}
-
-#member_list tr, #member_list td {
-	border: 1px solid black;
-	padding: 15px;
-}
-</style>
+<link href="../resources/css/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 	<h1>전체 회원 목록</h1>
-	<table id="member_list">
+	<table class="tbl">
 		<tr>
 			<td colspan="4">도서목록</td>
 		</tr>
@@ -31,7 +20,6 @@
 			<td>아이디</td>
 			<td>전화번호</td>
 		</tr>
-
 		<c:forEach var="member" items="${memberList}">
 			<tr>
 				<td>${member.seq}</td>

@@ -3,7 +3,8 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="bitedu.bipa.test.vo.BookCopy" alias="bookCopyVO"></typeAlias>
-		<typeAlias type="bitedu.bipa.test.vo.MemberVO" alias="memberVO"></typeAlias>
+		<typeAlias type="bitedu.bipa.vo.BookCopy" alias="bookCopyVO"></typeAlias>
+		<typeAlias type="bitedu.bipa.vo.MemberVO" alias="memberVO"></typeAlias>
+		<typeAlias type="bitedu.bipa.vo.BoardVO" alias="boardVO"></typeAlias>		
 	</typeAliases>
 </configuration>

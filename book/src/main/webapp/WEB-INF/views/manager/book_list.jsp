@@ -12,7 +12,6 @@
 <link href="../resources/css/basic_style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
-
 <body>
 ${param.flag=='true'?"<script>alert('삭제성공');</script>":""}
 <table>

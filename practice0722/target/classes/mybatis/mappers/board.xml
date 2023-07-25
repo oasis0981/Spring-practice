@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
+  "http://mybastis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.board">
+	<resultMap id="boardMap" type="boardVO">
+		<id property="seq" column="seq" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="writer" column="writer" />
+		<result property="view" column="read_count" />
+		<result property="uploadTime" column="create_date" />
+		<result property="password" column="password" />
+		<result property="uploadFile" column="attatch_data" />
+	</resultMap>
+	<select id="selectAllPosts" resultMap="boardMap"
+		resultType="boardVO">
+		<![CDATA[
+			SELECT * FROM simple_board order by create_date desc
+		]]>
+	</select>
+
+	<select id="selectPost" resultMap="boardMap"
+		resultType="boardVO" parameterType="java.lang.Integer">
+		<![CDATA[
+			select * from simple_board where seq=#{seq}
+		]]>
+	</select>
+
+	<select id="insertPost" parameterType="boardVO">
+		<![CDATA[
+			insert into simple_board (title, content, writer, create_date, password, attatch_data) value (#{title}, #{content}, #{writer}, #{uploadTime}, #{password}, #{uploadFile})
+		]]>
+	</select>
+	<select id="selectList2" resultMap="boardMap" parameterType="map">
+	    <![CDATA[
+	       select * from simple_board where ${selectBox} like concat('%', #{searchBox}, '%');   
+	    ]]>
+   </select>
+	
+</mapper>

@@ -11,7 +11,6 @@
 		<result property="grade" column="user_grade"/>
 		<result property="grade" column="max_book"/>
 		<result property="stopDate" column="service_stop"/>
-		<result property="isAdmin" column="admin"/>
 	</resultMap>
 	<select id="selectAllUser" resultMap="memberMap" resultType="memberVO">
 		<![CDATA[
@@ -37,7 +36,7 @@
 	</select>
 	<select id="insertUser" parameterType="memberVO">
 		<![CDATA[
-			insert into book_user (user_id, user_pass, user_phone_number, admin) value (#{id}, #{password}, #{phoneNumber}, #{isAdmin})
+			insert into book_user (user_id, user_pass, user_phone_number) value (#{id}, #{password}, #{phoneNumber})
 		]]>
 	</select>
 	<select id="checkId" parameterType="java.lang.String" resultType="java.lang.Integer">

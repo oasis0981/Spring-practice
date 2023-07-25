@@ -41,6 +41,6 @@
 	</beans:bean>
 
 	<context:component-scan
-		base-package="bitedu.bipa.test" />
+		base-package="bitedu.bipa" />
 
 </beans:beans>
